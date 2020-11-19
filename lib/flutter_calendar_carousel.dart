@@ -237,7 +237,7 @@ class _CalendarState<T extends EventInterface> extends State<CalendarCarousel<T>
   int _startWeekday = 0;
   int _endWeekday = 0;
   DateFormat _localeDate;
-  int _pageNum = 0;
+  int _pageNum = 1;
   DateTime minDate;
   DateTime maxDate;
 
@@ -252,7 +252,7 @@ class _CalendarState<T extends EventInterface> extends State<CalendarCarousel<T>
     super.initState();
     initializeDateFormatting();
 
-    minDate = widget.minSelectedDate ?? DateTime(2018);
+    minDate = widget.minSelectedDate ?? DateTime(2020);
     maxDate = widget.maxSelectedDate ?? DateTime(DateTime.now().year + 1, DateTime.now().month, DateTime.now().day);
 
     if (widget.selectedDateTime != null)
@@ -269,7 +269,7 @@ class _CalendarState<T extends EventInterface> extends State<CalendarCarousel<T>
       /// width percentage
     );
 
-    _localeDate = DateFormat.yMMM(widget.locale);
+    _localeDate = DateFormat.yMMMM(widget.locale);
 
     if (widget.firstDayOfWeek == null)
       firstDayOfWeek = (_localeDate.dateSymbols.FIRSTDAYOFWEEK + 1) % 7;
@@ -451,17 +451,7 @@ class _CalendarState<T extends EventInterface> extends State<CalendarCarousel<T>
                     ),
                   )
                 : RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: isSelectedDay
-                          ? widget.selectedDayBorderColor
-                          : isToday && widget.todayBorderColor != null
-                              ? widget.todayBorderColor
-                              : isPrevMonthDay
-                                  ? widget.prevMonthDayBorderColor
-                                  : isNextMonthDay
-                                      ? widget.nextMonthDayBorderColor
-                                      : widget.thisMonthDayBorderColor,
-                    ),
+            borderRadius: BorderRadius.circular(8),
                   ),
           child: Stack(
             children: widget.showIconBehindDayText
