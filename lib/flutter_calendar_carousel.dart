@@ -1023,7 +1023,7 @@ class _CalendarState<T extends EventInterface> extends State<CalendarCarousel<T>
         ? (isSelectable
         ? widget.weekendTextStyle
         : widget.inactiveWeekendTextStyle)
-        : !isSelectable
+        : !isSelectable && !isToday
         ? widget.inactiveDaysTextStyle
         : isPrevMonthDay
         ? widget.prevDaysTextStyle
